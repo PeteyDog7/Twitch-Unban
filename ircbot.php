@@ -74,7 +74,7 @@ class IRCBot {
 
 	{
 
-		$this->send_data('USER', $config['nick'].' noahstech.net '.$config['nick'].' :'.$config['name']);
+		$this->send_data('PASS', $config['pass']);
 
 		$this->send_data('NICK', $config['nick']);
 
