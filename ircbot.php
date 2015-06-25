@@ -139,7 +139,7 @@ class IRCBot {
 
 				break;
 
-
+            /*
 
 			case ':!op':
 
@@ -163,6 +163,8 @@ class IRCBot {
 
 				break;
 
+            */
+            
 		}
 
 
@@ -221,7 +223,7 @@ class IRCBot {
 
 	}
 
-
+    /*
 
 	function protect_user($user = '')
 
@@ -297,6 +299,7 @@ class IRCBot {
 		}
 
 	}
+    */
 
 }
 
