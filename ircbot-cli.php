@@ -2,7 +2,7 @@
 
 //So the bot doesnt stop.
 
-set_time_limit(0);
+set_time_limit(10);
 
 ini_set('display_errors', 'on');
 
