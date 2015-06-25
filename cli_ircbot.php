@@ -62,7 +62,7 @@ class IRCBot{
 				$this->send_data('PONG', $this->msg[1]);
 			}
             
-        if (isset($this->msg[0)){
+        if (isset($this->msg[0])){
             var_dump($this->msg);
         }
             
