@@ -10,11 +10,11 @@ ini_set('display_errors', 'on');
 	//Example connection stuff.
 
 	$config = array( 
-		'server' => 'example.com', 
+		'server' => 'irc.twitch.com', 
 		'port' => 6667, 
-		'nick' => 'nicknick', 
-		'name' => 'IhaveNoName', 
-		'pass' => 'meh', 
+		'nick' => 'UnbanBot', 
+		'name' => 'UnbanBot', 
+		'pass' => 'oauth:zvp4fad4i4fen470c14v588z3vx0zu', 
 	);
 	  
 
@@ -52,7 +52,7 @@ class IRCBot {
 
 		$this->main();
 
-		$this->send_data('JOIN', '#chat');
+		$this->send_data('JOIN', '#peteydog7');
 
 	}
 
@@ -72,7 +72,7 @@ class IRCBot {
 
 	{
 
-		$this->send_data('USER', $config['nick'].' acidavengers.co.uk '.$config['nick'].' :'.$config['name']);
+		$this->send_data('USER', $config['nick'].' noahstech.net '.$config['nick'].' :'.$config['name']);
 
 		$this->send_data('NICK', $config['nick']);
 
@@ -128,7 +128,8 @@ class IRCBot {
 
 			case ':!quit':
 
-				$this->send_data('QUIT', 'acidavengers.co.uk made Bot');
+				$this->send_data('QUIT', 'noahstech.net made Bot');
+
 
 				break;
 
