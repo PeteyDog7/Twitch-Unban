@@ -55,14 +55,14 @@ class IRCBot{
 		while (true):
 			$data = fgets($this->socket, 128);
 			flush();
-			$this->ex = explode(' ', $data);
+			$this->msg = explode(' ', $data);
 		
-			if($this->ex[0] == 'PING'){
+			if($this->msg[0] == 'PING'){
 				//Plays ping-pong with the server..
-				$this->send_data('PONG', $this->ex[1]);
+				$this->send_data('PONG', $this->msg[1]);
 			}
-			$command = str_replace(array(chr(10), chr(13)), '', $this->ex[3]);
-            echo $command.'\n';
+			$command = str_replace(array(chr(10), chr(13)), '', $this->msg[3]);
+            echo $this->msg.'\n';
 		
 			//List of commands the bot responds to.
 			switch($command){
@@ -70,11 +70,11 @@ class IRCBot{
 					$this->say();
 				break;
 				case ':!join':
-					$this->join_channel($this->ex[4]);
+					$this->join_channel($this->msg[4]);
 				break;
 			
 				case ':!quit':
-					$this->send_data('QUIT', $this->ex[4]);
+					$this->send_data('QUIT', $this->msg[4]);
 				break;
 
 				case ':!time':
@@ -90,15 +90,15 @@ class IRCBot{
 		endwhile;
 	}
 	function say(){
-		$arraysize = sizeof($this->ex);
-		//1,2,3 are just nick and chan, 4 is where text starts 
+		$arraysize = sizeof($this->msg);
+		//1,2,3 are just nick and chan, 4 is where tmsgt starts 
 		$count = 4;
 		while($count <= $arraysize) {
-			$text = $text . " " . $this->ex[$count];
+			$tmsgt = $tmsgt . " " . $this->msg[$count];
 			$count++;
 		}
-		$this->privmsg($text, $this->configure['channel']);
-		unset($text);
+		$this->privmsg($tmsgt, $this->configure['channel']);
+		unset($tmsgt);
 	}
 	
 	function privmsg($message, $to){
@@ -122,7 +122,7 @@ class IRCBot{
 	/*
 	 * Joins a channel.
 	 * 
-	 * @param text
+	 * @param tmsgt
 	 */
 	function join_channel($channel){
 		$this->send_data('JOIN', $channel);
