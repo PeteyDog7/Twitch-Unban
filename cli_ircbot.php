@@ -62,7 +62,7 @@ class IRCBot{
 				$this->send_data('PONG', $this->msg[1]);
 			}
             
-        if(isset($this->msg[3]) {
+        if(isset($this->msg[3])) {
 			$command = str_replace(array(chr(10), chr(13)), '', $this->msg[3]);
             var_dump($this->msg);
             echo '   ---  ';
