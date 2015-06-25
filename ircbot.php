@@ -20,6 +20,8 @@ ini_set('display_errors', 'on');
 
 class IRCBot {
 
+    var $iteration = 0;
+    
 	//This is going to hold our TCP/IP connection
 
 	var $socket;
@@ -90,6 +92,8 @@ class IRCBot {
 
 	{
 
+        $iteration++;
+        
 		$data = fgets($this->socket, 128);
 
 		echo nl2br($data);
@@ -168,9 +172,10 @@ class IRCBot {
 		}
 
 
-
-		$this->main();
-
+        if ($iteration<10){
+		  $this->main();
+        }
+            
 	}
 
 
