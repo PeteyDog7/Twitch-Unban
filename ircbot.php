@@ -12,8 +12,8 @@ ini_set('display_errors', 'on');
 	$config = array( 
 		'server' => 'irc.twitch.tv', 
 		'port' => 6667, 
-		'nick' => 'UnbanBot', 
-		'name' => 'UnbanBot', 
+		'nick' => 'unbanbot', 
+		'name' => 'unbanbot', 
 		'pass' => 'oauth:zvp4fad4i4fen470c14v588z3vx0zu', 
 	);
 	  
