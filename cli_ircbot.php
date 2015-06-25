@@ -48,7 +48,7 @@ class IRCBot{
 	 */
 	
 	function main($configure){
-        fputs($this->socket,"PRIVMSG " . $onfigure['channel']. " :" . "I have been inititated!" . "\n");
+        fputs($this->socket,"PRIVMSG " . $configure['channel']. " :" . "I have been inititated!" . "\n");
 		while (true):
 			$data = fgets($this->socket, 128);
 			flush();
