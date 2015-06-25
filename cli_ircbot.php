@@ -25,6 +25,7 @@ class IRCBot{
 	 * @param array.
 	 */
 	function __construct($configure){
+         echo 'test';
 		 $this->socket = fsockopen($configure['server'], $configure['port']);
 		 $this->login($configure);
          $this->send_data('JOIN', $this->configure['channel']);
