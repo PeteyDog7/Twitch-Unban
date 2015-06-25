@@ -2,13 +2,14 @@
 <?php
 set_time_limit(0);
 ini_set('display_errors', 'on');
-$configure = array(
-	'server' => 'irc.twitch.tv',
-	'port' => 6667,
-	'nick' => 'Abotnickname',
-	'name' => 'IRC Bot',
-	'channel' => '',
-	'pass' => ''
+$configure = array( 
+		'server' => 'irc.twitch.tv', 
+		'port' => 6667, 
+		'nick' => 'unbanbot', 
+		'name' => 'unbanbot', 
+		'pass' => 'oauth:zvp4fad4i4fen470c14v588z3vx0zu',
+        'channel' => '#Peteydog7',
+	);
 );
 class IRCBot{
 	//TCP connection holder.
@@ -26,8 +27,8 @@ class IRCBot{
 	function __construct($configure){
 		 $this->socket = fsockopen($configure['server'], $configure['port']);
 		 $this->login($configure);
+         $this->send_data('JOIN', $this->configure['channel']);
 		 $this->main();
-		 $this->send_data('JOIN', $this->configure['channel']);
 	}
 	
 	/*
@@ -37,7 +38,7 @@ class IRCBot{
 	 */
 	 
 	function login($configure){
-		$this->send_data('USER', $configure['nick'] . ' some domain.com ' . $configure['nick'] . ' :' . $configure['name']);
+		$this->send_data('PASS', $configure['pass']);
 		$this->send_data('NICK', $configure['nick']);
 	}
 	
@@ -47,6 +48,7 @@ class IRCBot{
 	 */
 	
 	function main(){
+        fputs($this->socket,"PRIVMSG " . $configure['channel']. " :" . "I have been inititated!" . "\n");
 		while (true):
 			$data = fgets($this->socket, 128);
 			flush();
@@ -69,14 +71,6 @@ class IRCBot{
 			
 				case ':!quit':
 					$this->send_data('QUIT', $this->ex[4]);
-				break;
-			
-				case ':!op':
-					$this->op_user();
-				break;	
-			
-				case ':!deop':
-					$this->op_user('','', false);
 				break;
 
 				case ':!time':
@@ -128,24 +122,6 @@ class IRCBot{
 	 */
 	function join_channel($channel){
 		$this->send_data('JOIN', $channel);
-	}
-	/*
-	 * Give/Take operator status.
-	 */ 
-	function op_user($channel = '', $user = '', $op = true){
-		if($channel == '' || $user == ''){
-			if($channel == ''){
-				$channel = $this->ex[2];
-			}
-			if($user == ''){
-				 $user = strstr($this->ex[0], '!', true);
-			};
-			if($op){
-				$this->send_data('MODE', $channel . ' +o ' . $user);
-			}else{
-				$this->send_data('MODE', $channel . ' -o ' . $user);
-			}
-		}
 	}
 }
 $bot = new IRCBot($configure);
