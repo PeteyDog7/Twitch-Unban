@@ -90,7 +90,7 @@ class IRCBot {
 
 	{
 
-        for ($i = 1; $i<10; $i++) {
+        for ($i = 1; $i<1000; $i++) {
         
 		$data = fgets($this->socket, 128);
 
@@ -122,7 +122,7 @@ class IRCBot {
             
             case ':!test':
             
-                echo 'test';
+                $this->say();
             
                 break;
 
@@ -223,6 +223,22 @@ class IRCBot {
 
 	}
 
+    function say(){
+		$arraysize = sizeof($this->ex);
+		//1,2,3 are just nick and chan, 4 is where text starts 
+		$count = 4;
+		while($count <= $arraysize) {
+			$text = $text . " " . $this->ex[$count];
+			$count++;
+		}
+		$this->privmsg($text, $this->ex[2]);
+		unset($text);
+	}
+	
+	function privmsg($message, $to){
+		fputs($this->socket,"PRIVMSG " . $to . " :" . $message . "\n");
+	}
+    
     /*
 
 	function protect_user($user = '')
