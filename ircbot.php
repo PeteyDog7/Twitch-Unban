@@ -86,11 +86,9 @@ class IRCBot {
 
 	*/
 
-	function main()
-
-        fputs($this->socket,"PRIVMSG " . "#Peteydog7" . " :" . "I have been inititated!" . "\n");
+	function main(){
         
-	{
+        fputs($this->socket,"PRIVMSG " . "#Peteydog7" . " :" . "I have been inititated!" . "\n");
 
         for ($i = 1; $i<100; $i++) {
         
