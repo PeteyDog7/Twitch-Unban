@@ -89,16 +89,17 @@ class IRCBot{
 			}
 		endwhile;
 	}
+    
 	function say(){
 		$arraysize = sizeof($this->msg);
 		//1,2,3 are just nick and chan, 4 is where tmsgt starts 
 		$count = 4;
 		while($count <= $arraysize) {
-			$tmsgt = $tmsgt . " " . $this->msg[$count];
+			$text = $text . " " . $this->msg[$count];
 			$count++;
 		}
-		$this->privmsg($tmsgt, $this->configure['channel']);
-		unset($tmsgt);
+		$this->privmsg($text, $this->configure['channel']);
+		unset($text);
 	}
 	
 	function privmsg($message, $to){
@@ -122,7 +123,7 @@ class IRCBot{
 	/*
 	 * Joins a channel.
 	 * 
-	 * @param tmsgt
+	 * @param text
 	 */
 	function join_channel($channel){
 		$this->send_data('JOIN', $channel);
