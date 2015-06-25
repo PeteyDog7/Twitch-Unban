@@ -172,9 +172,9 @@ class IRCBot {
 		}
 
 
-        /*if ($iteration<10){
+        if ($iteration<10){
 		  $this->main();
-        }*/
+        }
             
 	}
 
