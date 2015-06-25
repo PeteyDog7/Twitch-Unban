@@ -17,6 +17,8 @@ class IRCBot{
 	//Message holder.
 	public $msg = array();
     
+    public $configure = array();
+    
 	/*
 	 * Constucter.
 	 * Opens the server connection, and logs in the bot.
@@ -24,11 +26,12 @@ class IRCBot{
 	 * @param array.
 	 */
 	function __construct($configure){
-         echo 'test';
-		 $this->socket = fsockopen($configure['server'], $configure['port']);
+         echo 'test\n';
+         $this->configure = $configure;
+		 $this->socket = fsockopen($this->configure['server'], $this->configure['port']);
 		 $this->login($configure);
-         $this->send_data('JOIN', $configure['channel']);
-		 $this->main($configure);
+         $this->send_data('JOIN', $this->configure['channel']);
+		 $this->main();
 	}
 	
 	/*
@@ -38,8 +41,8 @@ class IRCBot{
 	 */
 	 
 	function login($configure){
-		$this->send_data('PASS', $configure['pass']);
-		$this->send_data('NICK', $configure['nick']);
+		$this->send_data('PASS', $this->configure['pass']);
+		$this->send_data('NICK', $this->configure['nick']);
 	}
 	
 	/*
@@ -47,8 +50,8 @@ class IRCBot{
 	 * 
 	 */
 	
-	function main($configure){
-        fputs($this->socket,"PRIVMSG " . $configure['channel']. " :" . "I have been inititated!" . "\n");
+	function main(){
+        fputs($this->socket,"PRIVMSG " . $this->configure['channel']. " :" . "I have been inititated!" . "\n");
 		while (true):
 			$data = fgets($this->socket, 128);
 			flush();
@@ -79,7 +82,7 @@ class IRCBot{
 
 
 				case 'Hello':
-					fputs($this->socket,"PRIVMSG " . $this->ex[2] . " : Hi!\n");
+					fputs($this->socket,"PRIVMSG " . $this->configure['channel'] . " : Hi!\n");
 				break;
 			
 			}
@@ -93,7 +96,7 @@ class IRCBot{
 			$text = $text . " " . $this->ex[$count];
 			$count++;
 		}
-		$this->privmsg($text, $this->ex[2]);
+		$this->privmsg($text, $this->configure['channel']);
 		unset($text);
 	}
 	
