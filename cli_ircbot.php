@@ -62,6 +62,7 @@ class IRCBot{
 				$this->send_data('PONG', $this->ex[1]);
 			}
 			$command = str_replace(array(chr(10), chr(13)), '', $this->ex[3]);
+            echo $command.'\n';
 		
 			//List of commands the bot responds to.
 			switch($command){
