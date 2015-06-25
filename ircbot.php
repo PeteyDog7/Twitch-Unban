@@ -92,7 +92,9 @@ class IRCBot {
 
 	{
 
-        /$iteration++;
+        for ($i = 1; i<100; i++) {
+        
+        //$iteration++;
         
 		$data = fgets($this->socket, 128);
 
@@ -171,8 +173,7 @@ class IRCBot {
             
 		}
 
-
-        $this->main();
+        }
             
 	}
 
