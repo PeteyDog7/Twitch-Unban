@@ -10,7 +10,6 @@ $configure = array(
 		'pass' => 'oauth:zvp4fad4i4fen470c14v588z3vx0zu',
         'channel' => '#Peteydog7',
 	);
-);
 class IRCBot{
 	//TCP connection holder.
 	public $socket;
