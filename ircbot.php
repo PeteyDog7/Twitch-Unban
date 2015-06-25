@@ -19,8 +19,6 @@ ini_set('display_errors', 'on');
 	  
 
 class IRCBot {
-
-    //var $iteration = 0;
     
 	//This is going to hold our TCP/IP connection
 
@@ -51,10 +49,10 @@ class IRCBot {
 		$this->socket = fsockopen($config['server'], $config['port']);
 
 		$this->login($config);
+        
+        $this->send_data('JOIN', '#Peteydog7');
 
 		$this->main();
-
-		$this->send_data('JOIN', '#Peteydog7');
 
 	}
 
@@ -93,8 +91,6 @@ class IRCBot {
 	{
 
         for ($i = 1; $i<10; $i++) {
-        
-        //$iteration++;
         
 		$data = fgets($this->socket, 128);
 
