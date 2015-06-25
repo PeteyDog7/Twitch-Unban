@@ -10,7 +10,7 @@ ini_set('display_errors', 'on');
 	//Example connection stuff.
 
 	$config = array( 
-		'server' => 'irc.twitch.com', 
+		'server' => 'irc.twitch.tv', 
 		'port' => 6667, 
 		'nick' => 'UnbanBot', 
 		'name' => 'UnbanBot', 
