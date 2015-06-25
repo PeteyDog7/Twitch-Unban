@@ -16,7 +16,7 @@ class IRCBot{
 	
 	//Message holder.
 	public $msg = array();
-	
+    
 	/*
 	 * Constucter.
 	 * Opens the server connection, and logs in the bot.
@@ -27,8 +27,8 @@ class IRCBot{
          echo 'test';
 		 $this->socket = fsockopen($configure['server'], $configure['port']);
 		 $this->login($configure);
-         $this->send_data('JOIN', $this->configure['channel']);
-		 $this->main();
+         $this->send_data('JOIN', $configure['channel']);
+		 $this->main($configure);
 	}
 	
 	/*
@@ -47,8 +47,8 @@ class IRCBot{
 	 * 
 	 */
 	
-	function main(){
-        fputs($this->socket,"PRIVMSG " . $this->configure['channel']. " :" . "I have been inititated!" . "\n");
+	function main($configure){
+        fputs($this->socket,"PRIVMSG " . $onfigure['channel']. " :" . "I have been inititated!" . "\n");
 		while (true):
 			$data = fgets($this->socket, 128);
 			flush();
