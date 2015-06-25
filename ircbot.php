@@ -117,6 +117,12 @@ class IRCBot {
 		switch($command) //List of commands the bot responds to from a user.
 
 		{
+            
+            case ':!test':
+            
+                echo 'test';
+            
+                break;
 
 			case ':!join':
 
@@ -225,16 +231,15 @@ class IRCBot {
 
 		{
 
-if(php_version() >= '5.3.0')
-			{
+            if(php_version() >= '5.3.0') {
 				$user = strstr($this->ex[0], '!', true);
 			} else {
 				$length = strstr($this->ex[0], '!');
 				$user   = substr($this->ex[0], 0, $length);
 			}
-			}
+        }
 
-		}
+    }
 
 
 
@@ -266,7 +271,7 @@ if(php_version() >= '5.3.0')
 
 			{
 
-if(php_version() >= '5.3.0')
+            if(php_version() >= '5.3.0')
 			{
 				$user = strstr($this->ex[0], '!', true);
 			} else {
